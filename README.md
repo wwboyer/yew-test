@@ -1,1 +1,0 @@
-Just testing out Rust + Yew because it sounded interesting. Nothing too crazy going on here.

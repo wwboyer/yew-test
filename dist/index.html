@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="en"><head>
+    
+    <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
+    <link href="https://unpkg.com/sanitize.css/forms.css" rel="stylesheet">
+    <link href="https://unpkg.com/sanitize.css/typography.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" rel="stylesheet">
+    <style>
+      .explanation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        white-space: pre-wrap;
+      }
+      .news-item {
+        padding: 0.5rem;
+        white-space: pre-wrap;
+        border-width: 0.125rem;
+        border-color: #526980;
+        border-style: solid;
+      }
+      img {
+        max-width: 60%;
+      }
+    </style>
+    <title>My cool epic web site</title>
+  
+<link rel="preload" href="/yew-test-ee7262a71e70572e_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/yew-test-ee7262a71e70572e.js"></head>
+  <body>
+
+<script type="module">import init from '/yew-test-ee7262a71e70572e.js';init('/yew-test-ee7262a71e70572e_bg.wasm');</script><script>(function () {
+    var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    var url = protocol + '//' + window.location.host + '/_trunk/ws';
+    var poll_interval = 5000;
+    var reload_upon_connect = () => {
+        window.setTimeout(
+            () => {
+                // when we successfully reconnect, we'll force a
+                // reload (since we presumably lost connection to
+                // trunk due to it being killed, so it will have
+                // rebuilt on restart)
+                var ws = new WebSocket(url);
+                ws.onopen = () => window.location.reload();
+                ws.onclose = reload_upon_connect;
+            },
+            poll_interval);
+    };
+
+    var ws = new WebSocket(url);
+    ws.onmessage = (ev) => {
+        const msg = JSON.parse(ev.data);
+        if (msg.reload) {
+            window.location.reload();
+        }
+    };
+    ws.onclose = reload_upon_connect;
+})()
+</script></body></html>
